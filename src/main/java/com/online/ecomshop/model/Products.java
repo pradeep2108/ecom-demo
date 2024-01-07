@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Products {
 
     @Id
-    @SequenceGenerator(name ="product_id" , sequenceName ="product_id" , initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name ="product_id" , sequenceName ="product_id" , initialValue = 1000, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_id" )
     private int id;
     private String brand;
