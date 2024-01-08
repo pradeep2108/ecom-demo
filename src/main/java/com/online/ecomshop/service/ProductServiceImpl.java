@@ -23,7 +23,6 @@ public class ProductServiceImpl implements  ProductService{
      * already exists, an exception is thrown with a descriptive message.
      *
      * @return The created product if successfully saved, or null if an exception occurs.
-     *
      * @throws Exception If the product variant already exists in the database.
      */
     @Override
@@ -104,22 +103,36 @@ public class ProductServiceImpl implements  ProductService{
         }
     }
 
+
+    /**
+     * Deletes a product from the database based on its unique identifier (ID).
+     *
+     * This method attempts to find a product with the given ID in the database. If the product
+     * is found, it is deleted. If the ID is not found, an exception is thrown with a descriptive
+     * message indicating that no product with the specified ID was found. Any unexpected exception
+     * during the deletion process is wrapped in a runtime exception.
+     * @throws RuntimeException If an unexpected exception occurs during the database deletion process.
+     *                         If no product is found with the specified ID.
+     */
     @Override
     public void deleteProductById(int id) {
 
         try{
+            // Attempt to find a product with the given ID
             Optional<Products> productsOptional = productRepository.findById(id);
 
+            // Check if a product with the given ID is found
             if(productsOptional.isPresent()){
+                // Delete the product from the database
                 productRepository.deleteById(id);
             }else {
-                throw new Exception("No such ID found");
+                // Throw an exception if no product is found with the specified ID
+                throw new Exception("No product found with ID: " + id);
             }
         } catch (Exception e) {
+            // Wrap and rethrow any unexpected exception as a runtime exception
             throw new RuntimeException("Error while deleting product", e);
         }
 
     }
-
-
 }
