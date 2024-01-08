@@ -2,8 +2,6 @@ package com.online.ecomshop.service;
 
 import com.online.ecomshop.model.Products;
 
-import java.util.Optional;
-
 public interface ProductService {
 
     Products createNewPorduct(Products product);
@@ -13,4 +11,6 @@ public interface ProductService {
     Products findProductByBrand(String brandName);
 
     void deleteProductById(int id);
+
+//    String findByVariant(String variant);
 }

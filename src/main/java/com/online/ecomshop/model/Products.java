@@ -29,6 +29,15 @@ public class Products {
         this.price = price;
     }
 
+    public Products( String brand, String model, String category, String variant, String storage, double price) {
+        this.brand = brand;
+        this.model = model;
+        this.category = category;
+        this.variant = variant;
+        this.storage = storage;
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }

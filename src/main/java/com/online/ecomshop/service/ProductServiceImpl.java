@@ -30,10 +30,15 @@ public class ProductServiceImpl implements  ProductService{
         String variant = product.getVariant();
 
            try{
-               if (!productRepository.findByVariant(variant).isEmpty()){
+               Products isExist =  productRepository.findByVariant(variant);
+
+               if (isExist == null){
+                   return productRepository.save(product);
+
+               }else {
                    throw new Exception("variant already exists " + variant);
                }
-               return productRepository.save(product);
+
            } catch (Exception e) {
                e.printStackTrace();
               return null;
@@ -135,4 +140,11 @@ public class ProductServiceImpl implements  ProductService{
         }
 
     }
+
+//    @Override
+//    public String findByVariant(String variant) {
+//        return productRepository.findByVariant(variant);
+//    }
+
+
 }
